@@ -3,10 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
+        <title>To Do App</title>
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
+        <div class="container">
+            <h1 class="heading">TO DO APP</h1>
+            <div class="add-task">
+                <input
+                    id="input"
+                    type="search"
+                    placeholder="Type your task here..."
+                />
+                <button id="btn" class="btn">Add Task</button>
+            </div>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
         <script src="./js/app.js"></script>
     </body>
 </html>
