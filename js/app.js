@@ -4,6 +4,9 @@ const btn = $("#btn");
 const input = $("#input");
 const table = $("#table");
 
+const tbody = document.createElement("tbody");
+table.append(tbody);
+
 let count = 0;
 
 btn.addEventListener("click", () => {
@@ -15,17 +18,17 @@ btn.addEventListener("click", () => {
     }
     count++;
 
-    const tbody = document.createElement("tbody");
-
-    tbody.innerHTML = `
+    const newRow = `
         <tr>
             <td>${count}</td>
             <td>${inputValue}</td>
-            <td> <button id="delete" class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
-                 <button id="done" class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
+            <td> 
+                 <button class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
+                 <button class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
             </td>
         </tr>
    `;
-    table.append(tbody);
+    tbody.insertAdjacentHTML("beforeend", newRow);
     input.value = "";
+    input.focus();
 });
