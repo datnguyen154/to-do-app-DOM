@@ -32,3 +32,21 @@ btn.addEventListener("click", () => {
     input.value = "";
     input.focus();
 });
+
+table.addEventListener("click", function (e) {
+    const btnDelete = e.target.closest(".btn-delete");
+    const btnDone = e.target.closest(".btn-done");
+
+    if (btnDelete) {
+        const row = btnDelete.closest("tr");
+        row.remove();
+    }
+
+    if (btnDone) {
+        const row = btnDone.closest("tr");
+        const taskContent = row.querySelectorAll("td")[1];
+
+        taskContent.style.textDecoration = "line-through";
+        taskContent.style.color = "#888";
+    }
+});
