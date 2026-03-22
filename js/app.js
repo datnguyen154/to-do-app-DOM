@@ -10,20 +10,14 @@ table.append(tbody);
 let count = 0;
 
 function updateSerialNumbers() {
-    // 1. Lấy tất cả các thẻ <tr> đang có trong tbody
     const rows = tbody.querySelectorAll("tr");
 
-    // 2. Lặp qua từng thẻ <tr> để đánh lại số
     rows.forEach((row, index) => {
-        // Tìm ô <td> đầu tiên (chứa số thứ tự)
         const sttCell = row.querySelector("td");
 
-        // Mảng bắt đầu từ 0, nên STT hiển thị phải là index + 1
         sttCell.innerText = index + 1;
     });
 
-    // 3. Cập nhật lại biến count bằng đúng số lượng task hiện tại
-    // Nếu xóa hết sạch, rows.length = 0 => count về 0. Task tiếp theo sẽ là 1.
     count = rows.length;
 }
 
@@ -40,9 +34,10 @@ btn.addEventListener("click", () => {
         <tr>
             <td>${count}</td>
             <td>${inputValue}</td>
-            <td> 
-                 <button class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
-                 <button class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
+            <td class="action-cell"> 
+                <button class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
+                <button class="btn-action btn-edit" style="background-color: #ff9800;">Edit <span class="icon-box">✏️</span></button>
+                <button class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
             </td>
         </tr>
    `;
@@ -68,5 +63,50 @@ table.addEventListener("click", function (e) {
 
         taskContent.style.textDecoration = "line-through";
         taskContent.style.color = "#888";
+    }
+
+    const btnEdit = e.target.closest(".btn-edit");
+
+    if (btnEdit) {
+        const row = btnEdit.closest("tr");
+        const taskContent = row.querySelectorAll("td")[1];
+
+        if (btnEdit.classList.contains("is-editing")) {
+            const editInput = taskContent.querySelector("input");
+            const newValue = editInput.value.trim();
+
+            if (newValue === "") {
+                alert("Task description cannot be empty!");
+                return;
+            }
+
+            taskContent.innerText = newValue;
+
+            btnEdit.classList.remove("is-editing");
+            btnEdit.innerHTML = `Edit <span class="icon-box">✏️</span>`;
+            btnEdit.style.backgroundColor = "#ff9800";
+        } else {
+            const currentText = taskContent.innerText;
+
+            taskContent.innerHTML = `<input type="text" class="edit-input" value="${currentText}" style="padding: 5px; font-size: 16px; width: 80%;">`;
+
+            const editInput = taskContent.querySelector("input");
+            editInput.focus();
+
+            editInput.selectionStart = editInput.value.length;
+
+            btnEdit.classList.add("is-editing");
+
+            btnEdit.innerHTML = `Save <span class="icon-box">💾</span>`;
+            btnEdit.style.backgroundColor = "#2196f3";
+
+            editInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+
+                    btnEdit.click();
+                }
+            });
+        }
     }
 });
