@@ -4,6 +4,19 @@ const btn = $("#btn");
 const input = $("#input");
 const table = $("#table");
 
+function saveData() {
+    localStorage.setItem("todoData", tbody.innerHTML);
+}
+
+function loadData() {
+    const savedHTML = localStorage.getItem("todoData");
+
+    if (savedHTML) {
+        tbody.innerHTML = savedHTML;
+        updateSerialNumbers();
+    }
+}
+
 const tbody = document.createElement("tbody");
 table.append(tbody);
 
@@ -44,6 +57,7 @@ btn.addEventListener("click", () => {
     tbody.insertAdjacentHTML("beforeend", newRow);
     input.value = "";
     input.focus();
+    saveData();
 });
 
 table.addEventListener("click", function (e) {
@@ -55,6 +69,7 @@ table.addEventListener("click", function (e) {
         row.remove();
 
         updateSerialNumbers();
+        saveData();
     }
 
     if (btnDone) {
@@ -63,6 +78,7 @@ table.addEventListener("click", function (e) {
 
         taskContent.style.textDecoration = "line-through";
         taskContent.style.color = "#888";
+        saveData();
     }
 
     const btnEdit = e.target.closest(".btn-edit");
@@ -110,3 +126,5 @@ table.addEventListener("click", function (e) {
         }
     }
 });
+
+loadData();
