@@ -49,7 +49,6 @@ This project focuses on core JavaScript skills and improving user experience wit
 
 ## 📈 Future Improvements
 
-* 💾 Save tasks using Local Storage
 * 🔍 Filter tasks (All / Completed / Active)
 * 📱 Improve responsive design
 * 🌙 Add dark mode
