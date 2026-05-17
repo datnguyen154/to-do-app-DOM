@@ -8,34 +8,35 @@ table.append(tbody);
 
 const API_URL = "https://6a09ee7de7e3f433d4839895.mockapi.io/tasks";
 
-// --- READ: Fetch and render tasks ---
 function loadTasks() {
-    fetch(API_URL)
+    fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+    })
         .then((response) => response.json())
-        .then((tasks) => {
-            let htmlContent = "";
+        .then((task) => {
+            input.value = "";
+            input.focus();
 
-            tasks.forEach((task, index) => {
-                const textStyle = task.completed
-                    ? "text-decoration: line-through; color: #888;"
-                    : "";
+            const currentIndex = tbody.children.length;
 
-                htmlContent += `
-                    <tr data-id="${task.id}">
-                        <td>${index + 1}</td>
-                        <td style="${textStyle}">${task.title}</td>
-                        <td class="action-cell"> 
-                            <button type="button" class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
-                            <button type="button" class="btn-action btn-edit" style="background-color: #ff9800;">Edit <span class="icon-box">✏️</span></button>
-                            <button type="button" class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
-                        </td>
-                    </tr>
-                `;
-            });
-
-            tbody.innerHTML = htmlContent;
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-id", task.id);
+            tr.innerHTML = `
+                <td>${currentIndex + 1}</td>
+                <td>${task.title}</td>
+                <td class="action-cell"> 
+                    <button type="button" class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
+                    <button type="button" class="btn-action btn-edit" style="background-color: #ff9800;">Edit <span class="icon-box">✏️</span></button>
+                    <button type="button" class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
+                </td>
+            `;
+            tbody.append(tr);
         })
-        .catch((error) => console.error("Error fetching tasks:", error));
+        .catch((error) => console.error("Error creating task:", error));
 }
 
 // --- CREATE: Add a new task ---
