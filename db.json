@@ -7,13 +7,23 @@
     },
     {
       "title": "tap gym",
-      "completed": true,
+      "completed": false,
       "id": "JSsSAIuBPR4"
     },
     {
       "title": "nan an",
       "completed": false,
       "id": "RybZjT9jzxk"
+    },
+    {
+      "title": "cafe",
+      "completed": false,
+      "id": "MVYI2G7VILI"
+    },
+    {
+      "title": "don phong",
+      "completed": false,
+      "id": "0f82gJh0oGM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

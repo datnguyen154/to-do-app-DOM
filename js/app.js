@@ -6,7 +6,7 @@ const table = $("#table");
 const tbody = document.createElement("tbody");
 table.append(tbody);
 
-const API_URL = "http://localhost:3000/tasks";
+const API_URL = "https://6a09ee7de7e3f433d4839895.mockapi.io/tasks";
 
 // --- READ: Fetch and render tasks ---
 function loadTasks() {
