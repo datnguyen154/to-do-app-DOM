@@ -25,9 +25,9 @@ function loadTasks() {
                         <td>${index + 1}</td>
                         <td style="${textStyle}">${task.title}</td>
                         <td class="action-cell"> 
-                            <button class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
-                            <button class="btn-action btn-edit" style="background-color: #ff9800;">Edit <span class="icon-box">✏️</span></button>
-                            <button class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
+                            <button type="button" class="btn-action btn-done"> Done <span class="icon-box">✔</span> </button> 
+                            <button type="button" class="btn-action btn-edit" style="background-color: #ff9800;">Edit <span class="icon-box">✏️</span></button>
+                            <button type="button" class="btn-action btn-delete">Delete <span class="icon-box">✖</span></button>
                         </td>
                     </tr>
                 `;

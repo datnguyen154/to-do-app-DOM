@@ -1,19 +1,19 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Ôn lại kiến thức DOM",
-      "completed": true
-    },
-    {
-      "title": "rua bat",
-      "completed": true,
+      "title": "chay bo",
+      "completed": false,
       "id": "wnEYknwrkmQ"
     },
     {
       "title": "tap gym",
-      "completed": false,
+      "completed": true,
       "id": "JSsSAIuBPR4"
+    },
+    {
+      "title": "nan an",
+      "completed": false,
+      "id": "RybZjT9jzxk"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
